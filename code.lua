@@ -4,13 +4,14 @@ do
   local healthstoneId = 5512;
   local siphId = 176409; -- Rejuvenating Siphoned Essence - Torghast Potion
   local spiritualHealingId = 171267; -- Spiritual Healing Potion
+  local soulfulhealingId = 180317; -- Soulful Healing Potion
   local phialId = 177278; -- Phial of Serenity
   
   
   function getPotNames()
     siphName = GetItemInfo(siphId);
     spiritualHealingName = GetItemInfo(spiritualHealingId);
-  
+    soulfulhealingId = GetItemInfo(soulfulhealingId);
     -- fall back on connect sometimes GetItem fail
     if siphName==nil then
       siphName = "Rejuvenating Siphoned Essence"
@@ -18,14 +19,18 @@ do
     if spiritualHealingName==nil then
       spiritualHealingName = "Spiritual Healing Potion"
     end
-    return siphName, spiritualHealingName
+    if soulfulhealingName==nil then
+      soulfulhealingName = "Soulful Healing Potion"
+    end
+    return siphName, spiritualHealingName, soulfulhealingName
   end
   
   function getPots()
-    siphName, spiritualHealingName = getPotNames()
+    siphName, spiritualHealingName, soulfulhealingName = getPotNames()
     return {
       {siphName, GetItemCount(siphId, false, false)},
-      {spiritualHealingName, GetItemCount(spiritualHealingId, false, false)}
+      {spiritualHealingName, GetItemCount(spiritualHealingId, false, false)},
+      {soulfulhealingName, GetItemCount(soulfulhealingId, false, false)}
   
     }
   end
@@ -96,27 +101,27 @@ do
       end
   
       -- Currently the Priority is: vial -> healthstone -> phial -> pot
-      -- after 50k+ health it needs to be: healtstone -> phial -> pot
+      -- after 50k+ health it needs to be: pot -> phial -> healthstone
       -- Thought process is to use "free" or inherent consumable before purchasable consumables
       
-      if englishClass=="ROGUE" then
+      --[[if englishClass=="ROGUE" then
         resetType = "30"
         table.insert(potList, "Crimson Vial")
         potListCounter=potListCounter+1;
-      end
-      if foundHealthstone==true then
-        table.insert(potList,healthstoneName)
+      end]]--
+      if foundPots==true then
+        table.insert(potList,potName)
         potListCounter=potListCounter+1;
       end
       if foundPhial==true then
         table.insert(potList,phialName)
         potListCounter=potListCounter+1;
       end
-      if foundPots==true then
-        table.insert(potList,potName)
+      if foundHealthstone==true then
+        table.insert(potList,healthstoneName)
         potListCounter=potListCounter+1;
       end
-  
+
       if potListCounter==0 then
         macroStr = "#showtooltip"
       else
