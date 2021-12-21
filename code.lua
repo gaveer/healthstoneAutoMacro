@@ -11,7 +11,7 @@ do
   function getPotNames()
     siphName = GetItemInfo(siphId);
     spiritualHealingName = GetItemInfo(spiritualHealingId);
-    soulfulhealingId = GetItemInfo(soulfulhealingId);
+    soulfulhealingName = GetItemInfo(soulfulhealingId);
     -- fall back on connect sometimes GetItem fail
     if siphName==nil then
       siphName = "Rejuvenating Siphoned Essence"
