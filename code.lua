@@ -101,7 +101,7 @@ do
       end
   
       -- Currently the Priority is: vial -> healthstone -> phial -> pot
-      -- after 50k+ health it needs to be: pot -> phial -> healthstone
+      -- after 50k+ health it needs to be: healthstone -> phial -> pot
       -- Thought process is to use "free" or inherent consumable before purchasable consumables
       
       --[[if englishClass=="ROGUE" then
@@ -109,16 +109,16 @@ do
         table.insert(potList, "Crimson Vial")
         potListCounter=potListCounter+1;
       end]]--
-      if foundPots==true then
-        table.insert(potList,potName)
+      if foundHealthstone==true then
+        table.insert(potList,healthstoneName)
         potListCounter=potListCounter+1;
       end
       if foundPhial==true then
         table.insert(potList,phialName)
         potListCounter=potListCounter+1;
       end
-      if foundHealthstone==true then
-        table.insert(potList,healthstoneName)
+      if foundPots==true then
+        table.insert(potList,potName)
         potListCounter=potListCounter+1;
       end
 
