@@ -73,8 +73,8 @@ do
       local Pot = getPots()
       local healthstoneName, healthstoneCounter = getHealthstone()
       local phialName, phialCounter = getPhial()
-      local playerClass, englishClass, classIndex = UnitClass("player");
-      local resetType = "combat"
+      --local playerClass, englishClass, classIndex = UnitClass("player");
+      --local resetType = "combat"
       local macroStr, potName, foundPots, foundPhial, foundHealthstone, potList, potListCounter, potsString;
   
       foundPots = false;
@@ -133,7 +133,7 @@ do
           end
         end
       end
-      macroStr = "#showtooltip \n/cast " .. potsString;
+      macroStr = "#showtooltip \n/castsequence " .. potsString;
       --macroStr = "#showtooltip \n/castsequence reset=" .. resetType .. " " .. potsString;
       EditMacro("HAMHealthPot", "HAMHealthPot", nil, macroStr, 1, nil)
     end
